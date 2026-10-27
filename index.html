@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#07080b">
+    <meta name="description" content="Explore Formula 1 race results through an interactive Tableau dashboard and story. 6,464 race records analyzed across 17 seasons.">
+    <title>F1 Race Intelligence | Paddock Telemetry & Tableau Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Space+Grotesk:wght@400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <!-- Top Telemetry Stream Bar -->
+    <div class="telemetry-ticker-bar" aria-label="Live track status ribbon">
+      <div class="ticker-content">
+        <span class="ticker-item"><span class="pulse-indicator green"></span> FIA SESSION: <strong>OFFICIAL ARCHIVE</strong></span>
+        <span class="ticker-item">TRACK TEMP: <strong>38.4°C</strong></span>
+        <span class="ticker-item">AIR TEMP: <strong>24.1°C</strong></span>
+        <span class="ticker-item">SAMPLE DEPTH: <strong>6,464 ROWS</strong></span>
+        <span class="ticker-item">SEASONS: <strong>2010 – 2026</strong></span>
+        <span class="ticker-item">STATUS: <strong>TRACK CLEAR · DRS ENABLED</strong></span>
+        <span class="ticker-item"><span class="pulse-indicator red"></span> LIVE STORY: <strong>SCENES 01–09 ACTIVE</strong></span>
+      </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="F1 Race Intelligence home">
+          <div class="brand-monogram">
+            <span class="f1-badge">F1</span>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">RACE INTELLIGENCE</span>
+            <span class="brand-subtitle">TELEMETRY & ANALYTICS LAB</span>
+          </div>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="#project" class="nav-link">Overview</a>
+          <a href="#dashboard" class="nav-link">Story Console</a>
+          <a href="#views" class="nav-link">Visual Scenes</a>
+          <a href="#scope" class="nav-link">Methodology</a>
+          <a href="docs/project-report.md" class="nav-link doc-link">Documentation ↗</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn-github" href="-" target="_blank" rel="noreferrer" aria-label="View source repository on GitHub">
+            <svg class="svg-icon" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero Section -->
+      <section class="hero-section" id="project">
+        <div class="hero-grid-overlay"></div>
+        <div class="hero-glow-orb orb-red"></div>
+        <div class="hero-glow-orb orb-gold"></div>
+
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <span class="live-pulse"></span>
+              <span class="badge-text">TABLEAU PUBLIC // ADVANCED DATA STORY</span>
+            </div>
+
+            <h1 class="hero-headline">
+              EVERY RACE TELLS A <span class="gradient-text">DATA STORY.</span>
+            </h1>
+
+            <p class="hero-lead">
+              A high-precision analytical exploration of <strong>6,464 race records</strong> spanning <strong>17 Formula 1 seasons</strong>. Decouple constructor dynamics, weather volatility, tyre degradation vectors, and driver attrition inside an interactive visual architecture.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn-primary" href="#dashboard">
+                <span>ENTER STORY CONSOLE</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              </a>
+              <a class="btn-secondary" href="https://public.tableau.com/app/profile/anush.somani/viz/f1-anush/Story1?publish=yes" target="_blank" rel="noreferrer">
+                <span>TABLEAU CLOUD PORTAL</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Paddock Telemetry HUD Visualizer Card -->
+          <div class="hero-hud-card" aria-hidden="true">
+            <div class="hud-header">
+              <div class="hud-title-wrap">
+                <span class="hud-status-led"></span>
+                <span class="hud-label">TELEMETRY STREAM // MONZA / INTERLAGOS SENSORS</span>
+              </div>
+              <span class="hud-code">CH-09.STORY</span>
+            </div>
+
+            <div class="hud-body">
+              <div class="hud-metric-row">
+                <div class="hud-metric">
+                  <span class="hud-sub">ERS DEPLOYMENT</span>
+                  <div class="hud-bar-track"><div class="hud-bar-fill" style="width: 88%;"></div></div>
+                </div>
+                <div class="hud-metric">
+                  <span class="hud-sub">THROTTLE MAP</span>
+                  <div class="hud-bar-track"><div class="hud-bar-fill throttle" style="width: 96%;"></div></div>
+                </div>
+              </div>
+
+              <div class="hud-sector-strip">
+                <div class="sector-block"><span class="sector-tag">S1 DELTA</span><span class="sector-time purple">-0.142s</span></div>
+                <div class="sector-block"><span class="sector-tag">S2 DELTA</span><span class="sector-time green">-0.089s</span></div>
+                <div class="sector-block"><span class="sector-tag">S3 DELTA</span><span class="sector-time yellow">+0.015s</span></div>
+              </div>
+
+              <div class="hud-readout-grid">
+                <div class="readout-cell">
+                  <span class="r-label">TOTAL SAMPLES</span>
+                  <span class="r-val">6,464</span>
+                </div>
+                <div class="readout-cell">
+                  <span class="r-label">SEASONS</span>
+                  <span class="r-val">2010–2026</span>
+                </div>
+                <div class="readout-cell">
+                  <span class="r-label">STORY POINTS</span>
+                  <span class="r-val">9 SCENES</span>
+                </div>
+                <div class="readout-cell">
+                  <span class="r-label">SHEET</span>
+                  <span class="r-val">race_results</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="hud-footer">
+              <div class="f1-stripes">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <span class="hud-sync-text">DATA INTEGRITY // ZERO IMPUTATION PROVENANCE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Metric Stat Tiles Array -->
+        <div class="stats-ribbon-wrapper">
+          <div class="stats-ribbon" aria-label="Key telemetry benchmarks">
+            <div class="stat-card">
+              <div class="stat-corner-accent"></div>
+              <span class="stat-number">6,464</span>
+              <span class="stat-title">RACE RESULT ROWS</span>
+              <span class="stat-desc">Granular per-driver finishing dataset</span>
+            </div>
+            <div class="stat-card">
+              <div class="stat-corner-accent"></div>
+              <span class="stat-number">17</span>
+              <span class="stat-title">F1 CHAMPIONSHIP SEASONS</span>
+              <span class="stat-desc">Spanning the modern hybrid era (2010–2026)</span>
+            </div>
+            <div class="stat-card">
+              <div class="stat-corner-accent"></div>
+              <span class="stat-number">09</span>
+              <span class="stat-title">GUIDED STORY SCENES</span>
+              <span class="stat-desc">Sequential analytical viewpoints & charts</span>
+            </div>
+            <div class="stat-card">
+              <div class="stat-corner-accent"></div>
+              <span class="stat-number">100%</span>
+              <span class="stat-title">INTERACTIVE DEPLOYMENT</span>
+              <span class="stat-desc">Embedded Tableau Public cloud platform</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Console Section -->
+      <section class="dashboard-section" id="dashboard">
+        <div class="dashboard-container">
+          <div class="section-title-bar">
+            <div class="title-meta">
+              <div class="section-tag">
+                <span class="tag-accent"></span>
+                <span>INTERACTIVE TABLEAU STORYPOINT</span>
+              </div>
+              <h2 class="section-title">Telemetry & Race Intelligence Console</h2>
+              <p class="section-subtitle">Navigate through 9 narrated story scenes directly inside the cockpit or launch the dedicated full-screen mode.</p>
+            </div>
+
+            <div class="console-toolbar" role="toolbar" aria-label="Viewer controls">
+              <button class="tool-btn" id="btnFullscreen" type="button" title="Expand frame to immersive fullscreen">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                <span>Fullscreen</span>
+              </button>
+              <button class="tool-btn" id="btnReload" type="button" title="Reload Tableau embed stream">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                <span>Reload</span>
+              </button>
+              <button class="tool-btn" id="btnCopyLink" type="button" title="Copy public story link">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Copy Link</span>
+              </button>
+              <a class="tool-btn primary" href="https://public.tableau.com/app/profile/anush.somani/viz/f1-anush/Story1?publish=yes" target="_blank" rel="noreferrer">
+                <span>Tableau Public ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- High-Tech Cockpit Frame -->
+          <div class="cockpit-viewer-shell" id="viewerShell">
+            <div class="cockpit-top-bar">
+              <div class="status-indicators">
+                <span class="led red"></span>
+                <span class="led yellow"></span>
+                <span class="led green"></span>
+                <span class="cockpit-stream-label">STREAM: TABLEAU PUBLIC · EMBED HOSTING ACTIVE</span>
+              </div>
+              <div class="cockpit-meta-info">
+                <span>STORY 1 ACTIVE</span>
+              </div>
+            </div>
+
+            <div class="viz-frame-wrap">
+              <iframe
+                id="tableauIframe"
+                title="F1 Race Intelligence Tableau Public story"
+                src="https://public.tableau.com/views/F1RaceIntelligencedashboard/Story1?:showVizHome=no&:embed=true"
+                allowfullscreen
+                loading="lazy">
+              </iframe>
+            </div>
+
+            <div class="cockpit-bottom-bar">
+              <div class="bottom-msg">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <span>If the interactive story fails to render due to browser privacy settings, <a href="https://public.tableau.com/app/profile/anush.somani/viz/f1-anush/Story1?publish=yes" target="_blank" rel="noreferrer">launch the official Tableau Public server direct</a>.</span>
+              </div>
+              <span class="frame-tag">SOURCE: race_results</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visuals Section (9 Scenes Exploration) -->
+      <section class="visuals-section" id="views">
+        <div class="visuals-container">
+          <div class="section-title-bar center">
+            <div class="section-tag">
+              <span class="tag-accent"></span>
+              <span>ANALYTICAL BREAKDOWN</span>
+            </div>
+            <h2 class="section-title">Nine Views. One Unified Narrative.</h2>
+            <p class="section-subtitle">Categorical breakdown of the 9 visualizations integrated into the Tableau Story workbook.</p>
+          </div>
+
+          <!-- Category Filter Bar -->
+          <div class="scene-filter-bar" role="tablist" aria-label="Filter scenes by category">
+            <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All Scenes (9)</button>
+            <button class="filter-tab" data-filter="standings" role="tab" aria-selected="false">Championship & Standings (3)</button>
+            <button class="filter-tab" data-filter="reliability" role="tab" aria-selected="false">Reliability & Weather (2)</button>
+            <button class="filter-tab" data-filter="strategy" role="tab" aria-selected="false">Pace & Strategy (4)</button>
+          </div>
+
+          <!-- 9 Visual Cards Grid -->
+          <div class="visual-grid">
+            <!-- Scene 01 -->
+            <article class="visual-card" data-category="standings">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">01</span>
+                <span class="card-tag">CONSTRUCTOR TEMPORAL</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+              </div>
+              <h3 class="card-title">Team Points by Season</h3>
+              <p class="card-body">Chronological progression of constructor points totals across the 2010–2026 calendar, highlighting dominance eras and regulation changes.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>SUM(Points)</code></span>
+                <span class="card-metric-badge">Season Axis</span>
+              </div>
+            </article>
+
+            <!-- Scene 02 -->
+            <article class="visual-card" data-category="standings">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">02</span>
+                <span class="card-tag">DRIVER STANDINGS</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.45 1-1 1H7"></path><path d="M14 14.66V17c0 .55.45 1 1 1h2"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+              </div>
+              <h3 class="card-title">Driver Points Leaderboard</h3>
+              <p class="card-body">Complete cumulative points hierarchy for all pilots recorded in the dataset, identifying top-tier point accumulators across campaigns.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>SUM(Points)</code></span>
+                <span class="card-metric-badge">Ranked Bar</span>
+              </div>
+            </article>
+
+            <!-- Scene 03 -->
+            <article class="visual-card" data-category="reliability">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">03</span>
+                <span class="card-tag">ATTRITION ANALYSIS</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </div>
+              <h3 class="card-title">Non-Finishes by Reason</h3>
+              <p class="card-body">Taxonomy of DNF causes, segregating powertrain failures, collisions, gearbox faults, and hydraulics to evaluate operational vulnerability.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>COUNT(Dnf)</code></span>
+                <span class="card-metric-badge">Categorical</span>
+              </div>
+            </article>
+
+            <!-- Scene 04 -->
+            <article class="visual-card" data-category="reliability">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">04</span>
+                <span class="card-tag">METEOROLOGY</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path><line x1="8" y1="19" x2="6" y2="22"></line><line x1="12" y1="19" x2="10" y2="22"></line><line x1="16" y1="19" x2="14" y2="22"></line></svg>
+              </div>
+              <h3 class="card-title">Non-Finish Rate by Weather</h3>
+              <p class="card-body">Statistical breakdown of the mean DNF rate across distinct weather conditions (Dry, Wet, Mixed, Extreme Heat), probing environmental risk.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>AVG(Dnf)</code></span>
+                <span class="card-metric-badge">Risk % Rate</span>
+              </div>
+            </article>
+
+            <!-- Scene 05 -->
+            <article class="visual-card" data-category="standings">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">05</span>
+                <span class="card-tag">CONSTRUCTOR HIERARCHY</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+              </div>
+              <h3 class="card-title">Team Points Leaderboard</h3>
+              <p class="card-body">All-time constructor point benchmarks in the dataset, showcasing historical performance gaps between frontline and midfield constructors.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>SUM(Points)</code></span>
+                <span class="card-metric-badge">Cumulative</span>
+              </div>
+            </article>
+
+            <!-- Scene 06 -->
+            <article class="visual-card" data-category="strategy">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">06</span>
+                <span class="card-tag">RACE SURGE DYNAMICS</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+              </div>
+              <h3 class="card-title">Average Positions Gained</h3>
+              <p class="card-body">Mean delta between grid starting position and checkered flag finish position, revealing race-day recovery strength vs qualifying bias.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>AVG(Positions Gained)</code></span>
+                <span class="card-metric-badge">Delta Mean</span>
+              </div>
+            </article>
+
+            <!-- Scene 07 -->
+            <article class="visual-card" data-category="strategy">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">07</span>
+                <span class="card-tag">TYRE STRATEGY</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              </div>
+              <h3 class="card-title">Starting Tyre Distribution</h3>
+              <p class="card-body">Frequency distribution of starting compounds (Soft, Medium, Hard, Intermediate, Wet) across race starts, exposing tactical conservatism.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>COUNT(Compound)</code></span>
+                <span class="card-metric-badge">Distribution</span>
+              </div>
+            </article>
+
+            <!-- Scene 08 -->
+            <article class="visual-card" data-category="strategy">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">08</span>
+                <span class="card-tag">TRACK TOPOLOGY</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+              </div>
+              <h3 class="card-title">Points by Circuit Type</h3>
+              <p class="card-body">Comparison of championship points scored across permanent road courses, high-speed tracks, and narrow street circuits.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>SUM(Points)</code></span>
+                <span class="card-metric-badge">Circuit Type</span>
+              </div>
+            </article>
+
+            <!-- Scene 09 -->
+            <article class="visual-card" data-category="strategy">
+              <div class="card-glow"></div>
+              <div class="card-top">
+                <span class="card-number">09</span>
+                <span class="card-tag">FINISHING EFFICIENCY</span>
+              </div>
+              <div class="card-icon-wrap">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><path d="M12 2v20"></path></svg>
+              </div>
+              <h3 class="card-title">Average Finish Position</h3>
+              <p class="card-body">Mean classification ranking per constructor team across completed races, providing an unweighted baseline of race execution consistency.</p>
+              <div class="card-footer">
+                <span class="calc-type">Aggregation: <code>AVG(Finish Position)</code></span>
+                <span class="card-metric-badge">Mean Finish</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Methodology & Scope Section -->
+      <section class="about-section" id="scope">
+        <div class="about-container">
+          <div class="dossier-layout">
+            <div class="dossier-lead">
+              <div class="section-tag">
+                <span class="tag-accent"></span>
+                <span>SCRUTINEERING & METHODOLOGY</span>
+              </div>
+              <h2 class="dossier-title">Analytical Scope & Rigor Boundaries</h2>
+              <p class="dossier-desc">
+                This project represents a descriptive analysis conducted on the course-authorized dataset <code>F1 Racing Project Dataset.xlsx</code> (sheet: <code>race_results</code>).
+              </p>
+              <p class="dossier-subtext">
+                All metrics reflect descriptive aggregations of supplied historical records. The visualizations illustrate observed statistical associations across weather, tyre, and constructor fields—they do not assert causal mechanics or computational predictive outcomes.
+              </p>
+
+              <div class="dossier-cta">
+                <a class="btn-primary small" href="docs/project-report.md">
+                  <span>READ COMPLETE REPORT</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="dossier-audit-panel">
+              <div class="audit-header">
+                <span class="audit-stamp">FIA DATA SCRUTINEERING CHECKLIST</span>
+                <span class="audit-ver">VERIFIED</span>
+              </div>
+
+              <ul class="audit-list">
+                <li class="audit-item">
+                  <div class="audit-check">✓</div>
+                  <div class="audit-detail">
+                    <strong>Zero Imputation Guarantee:</strong>
+                    <span>Non-finish entries retain explicit blanks rather than fabricated zero or last-place values.</span>
+                  </div>
+                </li>
+                <li class="audit-item">
+                  <div class="audit-check">✓</div>
+                  <div class="audit-detail">
+                    <strong>Native Scoring Loyalty:</strong>
+                    <span>Points reflect native historical points awards without retrospective standardization.</span>
+                  </div>
+                </li>
+                <li class="audit-item">
+                  <div class="audit-check">✓</div>
+                  <div class="audit-detail">
+                    <strong>Mean Over Sum Differentiation:</strong>
+                    <span>Positions gained and finishing classifications use true record means rather than distortive aggregates.</span>
+                  </div>
+                </li>
+                <li class="audit-item">
+                  <div class="audit-check">✓</div>
+                  <div class="audit-detail">
+                    <strong>Autonomous Pipeline:</strong>
+                    <span>Direct connection to Tableau Public CDN; zero third-party telemetry tracker dependencies.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Paddock Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="#top">
+            <div class="brand-monogram small"><span class="f1-badge">F1</span></div>
+            <div class="brand-text">
+              <span class="brand-title">RACE INTELLIGENCE</span>
+              <span class="brand-subtitle">Anush Somani</span>
+            </div>
+          </a>
+          <p class="footer-tagline">Formula 1 Data Analytics & Interactive Tableau Story Point.</p>
+        </div>
+
+        <div class="footer-nav">
+          <div class="footer-col">
+            <span class="col-head">NAVIGATION</span>
+            <a href="#project">Project Hero</a>
+            <a href="#dashboard">Story Console</a>
+            <a href="#views">Visual Scenes (9)</a>
+            <a href="#scope">Methodology</a>
+          </div>
+          <div class="footer-col">
+            <span class="col-head">RESOURCES</span>
+            <a href="docs/project-report.md">Project Report</a>
+            <a href=https://public.tableau.com/app/profile/anush.somani/viz/f1-anush/Story1?publish=yes"
+            <a href="
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="racing-flag-strip"></div>
+        <div class="bottom-legal">
+          <span>&copy; Anush Somani · Tableau Public Analytics Project</span>
+          <a href="#top" class="back-to-top" aria-label="Return to top of page">Back to Top ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Interactive Toast Element -->
+    <div class="toast-notification" id="toastMessage" role="alert" aria-live="polite">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      <span id="toastText">Link copied to clipboard!</span>
+    </div>
+
+    <!-- Client Interactions Script -->
+    <script>
+      (function() {
+        const btnFullscreen = document.getElementById('btnFullscreen');
+        const viewerShell = document.getElementById('viewerShell');
+
+        if (btnFullscreen && viewerShell) {
+          btnFullscreen.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+              if (viewerShell.requestFullscreen) {
+                viewerShell.requestFullscreen();
+              } else if (viewerShell.webkitRequestFullscreen) {
+                viewerShell.webkitRequestFullscreen();
+              }
+              btnFullscreen.querySelector('span').textContent = 'Exit Fullscreen';
+            } else {
+              if (document.exitFullscreen) {
+                document.exitFullscreen();
+              }
+              btnFullscreen.querySelector('span').textContent = 'Fullscreen';
+            }
+          });
+
+          document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement && btnFullscreen) {
+              btnFullscreen.querySelector('span').textContent = 'Fullscreen';
+            }
+          });
+        }
+
+        const btnReload = document.getElementById('btnReload');
+        const tableauIframe = document.getElementById('tableauIframe');
+        if (btnReload && tableauIframe) {
+          btnReload.addEventListener('click', function() {
+            const currentSrc = tableauIframe.src;
+            tableauIframe.src = '';
+            setTimeout(function() {
+              tableauIframe.src = currentSrc;
+              showToast('Tableau stream reloaded');
+            }, 100);
+          });
+        }
+
+        const btnCopyLink = document.getEhttps://public.tableau.com/applementById('btnCopyLink');
+        const directUrl = "https://public.tableau.com/app/profile/anush.somani/viz/f1-anush/Story1?publish=yes";
+        if (btnCopyLink) {
+          btnCopyLink.addEventListener('click', function() {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(directUrl).then(function() {
+                showToast('Tableau Public link copied to clipboard!');
+              }).catch(function() {
+                fallbackCopy(directUrl);
+              });
+            } else {
+              fallbackCopy(directUrl);
+            }
+          });
+        }
+
+        function fallbackCopy(text) {
+          const temp = document.createElement('textarea');
+          temp.value = text;
+          document.body.appendChild(temp);
+          temp.select();
+          document.execCommand('copy');
+          document.body.removeChild(temp);
+          showToast('Tableau Public link copied to clipboard!');
+        }
+
+        const toast = document.getElementById('toastMessage');
+        const toastText = document.getElementById('toastText');
+        let toastTimeout;
+        function showToast(msg) {
+          if (!toast) return;
+          if (toastText) toastText.textContent = msg;
+          toast.classList.add('visible');
+          clearTimeout(toastTimeout);
+          toastTimeout = setTimeout(function() {
+            toast.classList.remove('visible');
+          }, 3200);
+        }
+
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const visualCards = document.querySelectorAll('.visual-card');
+
+        filterTabs.forEach(function(tab) {
+          tab.addEventListener('click', function() {
+            filterTabs.forEach(function(t) {
+              t.classList.remove('active');
+              t.setAttribute('aria-selected', 'false');
+            });
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+
+            const filterValue = tab.getAttribute('data-filter');
+            visualCards.forEach(function(card) {
+              if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                card.style.display = 'flex';
+                setTimeout(function() { card.style.opacity = '1'; card.style.transform = 'translateY(0)'; }, 30);
+              } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(12px)';
+                setTimeout(function() { card.style.display = 'none'; }, 200);
+              }
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
