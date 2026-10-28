@@ -1,7 +1,7 @@
 <div align="center">
 
 # 🏁 F1 Race Intelligence
-### 🚀 [View Live Dashboard](https://f1-race-intelligence-dashboard-five.vercel.app)
+### 🚀 [View Live Dashboard](https://f1-race-intelligence-dashboard-git-master-anush-s-projects2.vercel.app/)
 
 Explore the live dashboard in your browser.
 
