@@ -1,11 +1,18 @@
 <div align="center">
 
 # 🏁 F1 Race Intelligence
-### 🚀 [View Live Dashboard](https://f1-race-intelligence-dashboard-five.vercel.app/)
-
-Explore the live dashboard in your browser.
 
 ### Formula 1 race results, explored through Tableau
+
+<p>
+  <a href="https://f1-race-intelligence-dashboard-five.vercel.app/">
+    🚀 <strong>View Live Website</strong>
+  </a>
+  &nbsp; · &nbsp;
+  <a href="https://github.com/AnushSomani/F1RaceIntelligenceDashboard-">
+    💻 <strong>View GitHub Repository</strong>
+  </a>
+</p>
 
 An interactive data analytics course project exploring team and driver points, non-finishes, weather, tyre compounds, and circuit types.
 
@@ -15,13 +22,8 @@ An interactive data analytics course project exploring team and driver points, n
   <a href="https://public.tableau.com/app/profile/anush.somani/viz/f1-anush/Story1?publish=yes"><strong>Explore Tableau Story</strong></a>
 </p>
 
-<p>
-  <img alt="Seasons covered: 2010–2026" src="https://img.shields.io/badge/Seasons-2010%E2%80%932026-e10600?style=for-the-badge">
-  <img alt="Race-result rows: 6464" src="https://img.shields.io/badge/Race%20results-6%2C464-222222?style=for-the-badge">
-  <img alt="Tableau visualizations: 9" src="https://img.shields.io/badge/Tableau%20views-9-00a1e4?style=for-the-badge">
-</p>
-
 </div>
+
 
 ---
 
@@ -68,9 +70,7 @@ See the [step-by-step project report](docs/project-report.md) for the problem st
 
 This repository also contains a responsive landing page that embeds the Tableau Story and links to the full dashboard. Open [`index.html`](index.html) in a browser to preview it locally; the Tableau embed needs an internet connection.
 
-After enabling GitHub Pages, the website will be available at:
 
-** **
 
 The repository is configured to publish with GitHub Actions. The first deployment may take a few minutes after Pages is enabled.
 
